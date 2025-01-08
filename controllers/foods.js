@@ -8,9 +8,10 @@ router.get('/', (req, res) => {
 });
 
 //INDEX
-router.get('/foods', (req, res) => {
+router.get('/foods', async (req, res) => {
     try {
-        res.render('foods/index.ejs');
+        const currentUser = await User.findById(req.session.user._id);
+        res.render('foods/index.ejs', { pantry: currentUser.pantry });
     } catch (error) {
         console.error(error.message, { message: 'server error' });
     }
@@ -25,6 +26,8 @@ router.get('/foods/new', async (req, res) => {
     }
 });
 
+//DELETE
+router.delete;
 //CREATE
 router.post('/foods', async (req, res) => {
     try {
@@ -34,7 +37,7 @@ router.post('/foods', async (req, res) => {
         res.redirect(`/users/${currentUser._id}/foods`);
     } catch (error) {
         console.log(error.message);
-        res.status(500).send('internal server error');
+        res.redirect('/');
     }
 });
 

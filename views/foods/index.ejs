@@ -8,6 +8,15 @@
     </head>
     <body>
         <h1>Welcome to my Pantry</h1>
+        <ul>
+            <% pantry.forEach((item) => { %>
+            <li>
+                <a href="/users/<%= user._id %>/foods/<%= pantry._id %>">
+                    <%= item.name %>
+                </a>
+            </li>
+            <% }) %>
+        </ul>
         <a href="/users/<%=user._id%>/foods/new">Add a new book</a>
     </body>
 </html>
