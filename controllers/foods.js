@@ -25,4 +25,17 @@ router.get('/foods/new', async (req, res) => {
     }
 });
 
+//CREATE
+router.post('/foods', async (req, res) => {
+    try {
+        const currentUser = await User.findById(req.session.user._id);
+        currentUser.pantry.push(req.body);
+        await currentUser.save();
+        res.redirect(`/users/${currentUser._id}/foods`);
+    } catch (error) {
+        console.log(error.message);
+        res.status(500).send('internal server error');
+    }
+});
+
 module.exports = router;
