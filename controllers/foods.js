@@ -27,7 +27,17 @@ router.get('/foods/new', async (req, res) => {
 });
 
 //DELETE
-router.delete;
+router.delete('/foods/:itemId', async (req, res) => {
+    try {
+        const currentUser = await User.findById(req.session.user._id);
+        currentUser.pantry.id(req.params.itemId).deleteOne();
+        await currentUser.save();
+        res.redirect(`/users/${currentUser._id}/foods`);
+    } catch (error) {
+        console.log(error.message);
+        res.redirect('/');
+    }
+});
 //CREATE
 router.post('/foods', async (req, res) => {
     try {
