@@ -38,7 +38,7 @@ app.use(passUserToView);
 app.use('/auth', authController);
 app.use(isSignedIn);
 app.use('/users/:userId', foodsController);
-app.use('/users', userController);
+app.use('/all_users', userController);
 
 app.get('/', (req, res) => {
     res.render('index.ejs', {
