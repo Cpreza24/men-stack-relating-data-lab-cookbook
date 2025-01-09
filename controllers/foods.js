@@ -49,6 +49,7 @@ router.put('/foods/:itemId', async (req, res) => {
         res.redirect(`/users/${currentUser._id}/foods`);
     } catch (error) {
         console.error(error.message);
+        res.redirect('/');
     }
 });
 
