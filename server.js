@@ -9,6 +9,7 @@ const session = require('express-session');
 
 const authController = require('./controllers/auth.js');
 const foodsController = require('./controllers/foods.js');
+const userController = require('./controllers/users.js');
 // server.js
 const isSignedIn = require('./middleware/is-signed-in.js');
 const passUserToView = require('./middleware/pass-user-to-view.js');
@@ -37,6 +38,7 @@ app.use(passUserToView);
 app.use('/auth', authController);
 app.use(isSignedIn);
 app.use('/users/:userId', foodsController);
+app.use('/users', userController);
 
 app.get('/', (req, res) => {
     res.render('index.ejs', {

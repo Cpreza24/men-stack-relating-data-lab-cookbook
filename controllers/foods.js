@@ -10,8 +10,11 @@ router.get('/', (req, res) => {
 //INDEX
 router.get('/foods', async (req, res) => {
     try {
-        const currentUser = await User.findById(req.session.user._id);
-        res.render('foods/index.ejs', { pantry: currentUser.pantry });
+        const currentUser = await User.find(req.session.user._id);
+        res.render('foods/index.ejs', {
+            pantry: currentUser.pantry,
+            user: currentUser,
+        });
     } catch (error) {
         console.error(error.message, { message: 'server error' });
     }
