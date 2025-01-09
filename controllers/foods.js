@@ -39,6 +39,19 @@ router.delete('/foods/:itemId', async (req, res) => {
     }
 });
 
+//UPDATE
+router.put('/foods/:itemId', async (req, res) => {
+    try {
+        const currentUser = await User.findById(req.session.user._id);
+        const pantry = currentUser.pantry.id(req.params.itemId);
+        pantry.set(req.body);
+        await currentUser.save();
+        res.redirect(`/users/${currentUser._id}/foods`);
+    } catch (error) {
+        console.error(error.message);
+    }
+});
+
 //CREATE
 router.post('/foods', async (req, res) => {
     try {
@@ -58,7 +71,9 @@ router.get('/foods/:itemId/edit', async (req, res) => {
         const currentUser = await User.findById(req.session.user._id);
         const pantry = currentUser.pantry.id(req.params.itemId);
         res.render('foods/edit.ejs', { pantry: pantry });
-    } catch (error) {}
+    } catch (error) {
+        console.error(error.message);
+    }
 });
 
 module.exports = router;

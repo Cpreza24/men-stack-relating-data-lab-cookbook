@@ -13,7 +13,7 @@
             <li>
                 <form action="/users/<%= user._id %>/foods/<%= item._id %>?_method=DELETE" method="POST">
                     <a href="/users/<%= user._id %>/foods/<%= item._id %>/edit">
-                        <%= item.name %>
+                        <%= item.name %> <%= item.foodType %> - <%= item.calories %> calories
                     </a>
                     <button type="submit">Delete Food</button>
                 </form>

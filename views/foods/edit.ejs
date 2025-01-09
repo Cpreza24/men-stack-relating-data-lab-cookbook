@@ -1,11 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Edit <%= pantry.name %></title>
-</head>
-<body>
-    <h1>Edit Page</h1>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> Edit <%= pantry.name %></title>
+    </head>
+    <body>
+        <h1>Edit Page</h1>
+        <form action="/users/<%= user._id %>/foods/<%= pantry._id %>?_method=PUT" method="POST">
+            <label for="name">Name:</label>
+            <input type="text" name="name" value='<%= pantry.name %>' />
+            <label for="foodType">Type:</label>
+            <select name="foodType" id="type">
+                <option value="fruit">Fruit</option>
+                <option value="vegetable">Vegetable</option>
+            </select>
+            <label for="calories">Calories:</label>
+            <input type="text" name="calories" value="<%= pantry.calories %>" />
+            <button type="submit">Submit Food</button>
+        </form>
+    </body>
 </html>
