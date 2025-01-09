@@ -8,18 +8,23 @@
     </head>
     <body>
         <h1>Welcome to <%= user.username %>'s Pantry</h1>
-        <ul>
-            <% pantry.forEach((item) => { %>
-            <li>
-                <form action="/users/<%= user._id %>/foods/<%= item._id %>?_method=DELETE" method="POST">
-                    <a href="/users/<%= user._id %>/foods/<%= item._id %>/edit">
-                        <%= item.name %> <%= item.foodType %> - <%= item.calories %> calories
-                    </a>
-                    <button type="submit">Delete Food</button>
-                </form>
-            </li>
-            <% }) %>
-        </ul>
-        <a href="/users/<%=user._id%>/foods/new">Add a new book</a>
+        <% if (pantry.length > 0) { %>
+            <ul>
+                <% pantry.forEach((item) => { %>
+                <li>
+                    <form action="/users/<%= user._id %>/foods/<%= item._id %>?_method=DELETE" method="POST">
+                        <a href="/users/<%= user._id %>/foods/<%= item._id %>/edit">
+                            <%= item.name %> <%= item.foodType %> - <%= item.calories %> calories
+                        </a>
+                        <button type="submit">Delete Food</button>
+                    </form>
+                </li>
+                <% }) %>
+            </ul>
+        <% } else { %>
+            <p>Pantry is empty</p>
+            <% } %>
+        
+        <a href="/users/<%=user._id%>/foods/new">Add a new food item</a>
     </body>
 </html>
