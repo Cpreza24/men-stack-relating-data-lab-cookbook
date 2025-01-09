@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Show User</title>
+    </head>
+    <body>
+        <h1><%= user.username.charAt(0).toUpperCase() + user.username.slice(1) %>'s Pantry</h1>
+        <% if (userPantry.length > 0) { %>
+            <ul>
+                <% userPantry.forEach(item => { %>
+                    <li><%= item.name.charAt(0).toUpperCase() + item.name.slice(1) %> - <%= item.foodType %> calories: <%= item.calories %></li>
+                <% }) %>
+            </ul>
+        <% } else { %>
+            <p><%= user.username.charAt(0).toUpperCase() + user.username.slice(1) %>s pantry is empty</p>
+            <% } %>
+    </body>
+</html>
