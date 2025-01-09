@@ -6,6 +6,7 @@
         <title>Show User</title>
     </head>
     <body>
+        <%- include('../partials/_navbar') %>
         <h1><%= user.username.charAt(0).toUpperCase() + user.username.slice(1) %>'s Pantry</h1>
         <% if (userPantry.length > 0) { %>
             <ul>
